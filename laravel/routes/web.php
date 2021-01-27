@@ -48,7 +48,7 @@ Route::get('/test', function() {
 Route::group(['middleware' => 'auth'], function() {
 
   // ユーザー投稿関係(create, store, edit, update, destroy)
-  Route::resource('/articles', 'ArticleController')->only(['store'])->middleware('throttle:15, 1');
+  Route::resource('/articles', 'ArticleController')->only(['store'])->middleware('throttle:10, 1');
   Route::resource('/articles', 'ArticleController')->only(['create', 'edit', 'update','destroy']);
 
   // いいね機能
@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function() {
   });
 
   // コメント機能
-  Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:15, 1');
+  Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:10, 1');
 
   // Zoomミーティング関連機能(CRUD)
   Route::resource('/meetings', 'Zoom\MeetingController')->only('store')->middleware('throttle:5, 1');
